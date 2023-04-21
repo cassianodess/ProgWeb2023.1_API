@@ -1,8 +1,10 @@
 from os import getenv
 from flask import Flask, make_response, request
 import openai
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.before_request
 def middleware():
