@@ -18,6 +18,7 @@ def middleware():
 def ask():
 
     question = request.json["question"] if request.json["question"] else None
+    openai.organization = getenv("ORGANIZATION") if getenv("ORGANIZATION") else None
     openai.api_key = getenv("API_KEY") if getenv("API_KEY") else None
 
     if question == None or len(question) == 0:
@@ -28,7 +29,7 @@ def ask():
         
     
     response = openai.Completion.create(
-        model="text-davinci-002",
+        model="text-davinci-003",
         prompt=question,
         temperature=0,
         max_tokens=2000
