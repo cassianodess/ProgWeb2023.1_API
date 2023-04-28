@@ -22,7 +22,7 @@ class OpenAI:
             engine=self.model,
             prompt=prompt,
             temperature=0.7,
-            max_tokens=1024,
+            max_tokens=2048,
             n=1,
             stop=None,
             frequency_penalty=0,
