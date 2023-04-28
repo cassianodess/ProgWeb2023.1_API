@@ -11,6 +11,11 @@ class OpenAI:
     def create_response(self, question):
         prompt = "Conversation history:\n" + "\n".join(self.chat_history)
         prompt += f"\nUser: {question}"
+        
+        prompt_tokens = len(prompt.split())
+        if prompt_tokens > 4096:
+            prompt = " ".join(prompt.split()[-4096:])
+
         openai.api_key = self.api_key
         openai.organization = self.organization
         response = openai.Completion.create(

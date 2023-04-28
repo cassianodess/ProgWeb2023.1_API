@@ -45,3 +45,11 @@ def ask():
         "question": question,
         "response": response
     })), 200
+    
+@app.route("/api/clear-cache", methods=["GET"])
+def clear_cache():
+    cache.clear()
+    return make_response(jsonify({
+        "status": 200,
+        "message": "Cache has been cleared successfully",
+    })), 200
