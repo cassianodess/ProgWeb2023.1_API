@@ -48,8 +48,15 @@ def ask():
     
 @app.route("/api/clear-cache", methods=["GET"])
 def clear_cache():
-    cache.clear()
+    cleared = cache.clear()
+    if cleared:
+        openai_api.clear_history()
+        return make_response(jsonify({
+            "status": 200,
+            "message": "Cache has been cleared successfully",
+        })), 200
     return make_response(jsonify({
-        "status": 200,
-        "message": "Cache has been cleared successfully",
+        "status": 400,
+        "message": "Fail in clear cache",
     })), 200
+    

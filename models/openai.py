@@ -8,6 +8,9 @@ class OpenAI:
         self.model = model
         self.chat_history = []
 
+    def clear_history(self):
+        self.chat_history = []
+
     def create_response(self, question):
         prompt = "Conversation history:\n" + "\n".join(self.chat_history)
         prompt += f"\nUser: {question}"
